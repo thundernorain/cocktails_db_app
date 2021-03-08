@@ -3,9 +3,9 @@ import 'package:cocktails_db_app/ui/widgets/cocktail_card.dart';
 import 'package:flutter/material.dart';
 
 class CocktailGridBuilder extends StatelessWidget {
-  final AsyncSnapshot<CocktailFromJson> snapshot;
+  final CocktailFromJson cocktails;
 
-  const CocktailGridBuilder({Key? key, required this.snapshot})
+  const CocktailGridBuilder({Key? key, required this.cocktails})
       : super(key: key);
 
   @override
@@ -26,11 +26,10 @@ class CocktailGridBuilder extends StatelessWidget {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
-            itemCount: snapshot.data!.drinks.length,
+            itemCount: cocktails.drinks.length,
             itemBuilder: (context, i) => CocktailCard(
-              name: snapshot.data!.drinks[i].strDrink!,
-              alcohol: snapshot.data!.drinks[i].strAlcoholic!,
-              image: snapshot.data!.drinks[i].strDrinkThumb,
+              cocktails: cocktails,
+              drinkIndex: i,
             ),
           ),
         ),

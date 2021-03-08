@@ -33,7 +33,7 @@ class _MainViewState extends State<MainView> {
               future: cocktails,
               builder: (context, AsyncSnapshot<CocktailFromJson> snapshot) =>
                   snapshot.hasData
-                      ? CocktailGridBuilder(snapshot: snapshot)
+                      ? CocktailGridBuilder(cocktails: snapshot.data!)
                       : _snapshotWithoutData(snapshot),
             ),
           )

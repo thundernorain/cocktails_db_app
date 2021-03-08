@@ -1,57 +1,72 @@
+import 'package:cocktails_db_app/model/cocktail_from_json.dart';
+import 'package:cocktails_db_app/ui/screens/cocktail_info_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class CocktailCard extends StatelessWidget {
-  final String name;
-  final String alcohol;
-  final String? image;
+  final CocktailFromJson cocktails;
+  final int drinkIndex;
   final String questionImage =
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/200px-Question_mark_%28black%29.svg.png";
 
   const CocktailCard(
-      {Key? key, required this.name, required this.alcohol, this.image})
+      {Key? key, required this.cocktails, required this.drinkIndex})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 3,
-                blurRadius: 5,
-              )
-            ]),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                image: DecorationImage(
-                  image: NetworkImage(image ?? questionImage),
-                  fit: BoxFit.cover,
+      child: InkWell(
+        onTap: () => _openCocktailInfo(context),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.black),
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 5,
+                )
+              ]),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        cocktails.drinks[drinkIndex].strDrinkThumb ??
+                            questionImage),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            Text(
-              name,
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              alcohol,
-              style: TextStyle(color: Colors.grey),
-            ),
-          ],
+              Text(
+                cocktails.drinks[drinkIndex].strDrink!,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                cocktails.drinks[drinkIndex].strAlcoholic!,
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  _openCocktailInfo(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => CocktailInfoScaffold(
+        cocktails: cocktails,
+        drinkIndex: drinkIndex,
+      ),
+    ));
   }
 }
