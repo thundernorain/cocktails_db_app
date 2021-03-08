@@ -1,3 +1,4 @@
+import 'package:cocktails_db_app/constants.dart';
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
 import 'package:cocktails_db_app/ui/screens/cocktail_info_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,6 @@ import 'package:flutter/material.dart';
 class CocktailCard extends StatelessWidget {
   final CocktailFromJson cocktails;
   final int drinkIndex;
-  final String questionImage =
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/200px-Question_mark_%28black%29.svg.png";
 
   const CocktailCard(
       {Key? key, required this.cocktails, required this.drinkIndex})
@@ -41,7 +40,7 @@ class CocktailCard extends StatelessWidget {
                   image: DecorationImage(
                     image: NetworkImage(
                         cocktails.drinks[drinkIndex].strDrinkThumb ??
-                            questionImage),
+                            Constants.questionImage),
                     fit: BoxFit.cover,
                   ),
                 ),
