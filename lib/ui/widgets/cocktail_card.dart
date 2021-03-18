@@ -1,6 +1,5 @@
 import 'package:cocktails_db_app/constants.dart';
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
-import 'package:cocktails_db_app/ui/screens/cocktail_info_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class CocktailCard extends StatelessWidget {
@@ -61,11 +60,16 @@ class CocktailCard extends StatelessWidget {
   }
 
   _openCocktailInfo(BuildContext context) {
+    /*
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => CocktailInfoScaffold(
         cocktails: cocktails,
         drinkIndex: drinkIndex,
       ),
-    ));
+    ));*/
+    Navigator.of(context).pushNamed("/cocktail_info", arguments: {
+      "cocktails": cocktails,
+      "drinkIndex": drinkIndex,
+    });
   }
 }
