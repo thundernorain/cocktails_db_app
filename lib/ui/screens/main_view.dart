@@ -4,11 +4,14 @@ import 'package:cocktails_db_app/ui/widgets/cocktail_grid_builder.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
+  MainView({Key? key}) : super(key: key);
+
   @override
   _MainViewState createState() => _MainViewState();
 }
 
-class _MainViewState extends State<MainView> {
+class _MainViewState extends State<MainView>
+    with AutomaticKeepAliveClientMixin<MainView> {
   Future<CocktailFromJson>? cocktails;
   String? _cocktailName;
 
@@ -20,6 +23,7 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       child: Column(
         children: [
@@ -65,4 +69,8 @@ class _MainViewState extends State<MainView> {
           : Center(
               child: CircularProgressIndicator(),
             );
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
