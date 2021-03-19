@@ -9,10 +9,17 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(
       MaterialApp(
-        //home: AppScaffold(),
+        theme: _myTheme,
         routes: {
           "/": (ctx) => AppScaffold(),
           "/cocktail_info": (ctx) => CocktailInfoScaffold(),
         },
       ),
     );
+
+ThemeData _myTheme = ThemeData.light().copyWith(
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: Colors.pink,
+    accentColor: Colors.amberAccent,
+  ),
+);

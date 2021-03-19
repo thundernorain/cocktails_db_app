@@ -23,14 +23,12 @@ class _AppScaffoldState extends State<AppScaffold> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _pageController = PageController(initialPage: _selectedPage);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _pageController.dispose();
   }
@@ -45,17 +43,17 @@ class _AppScaffoldState extends State<AppScaffold> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        selectedItemColor: Colors.pink,
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
         currentIndex: _selectedPage,
         onTap: _selectPage,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             icon: Icon(Icons.category),
             label: "Cocktails",
           ),
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             icon: Icon(Icons.favorite),
             label: "Favorites",
           ),

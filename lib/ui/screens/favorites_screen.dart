@@ -16,6 +16,5 @@ class _FavoritesScreenState extends State<FavoritesScreen>
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

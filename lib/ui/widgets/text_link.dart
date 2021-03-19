@@ -8,7 +8,7 @@ class TextLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color _color = color ?? Theme.of(context).primaryColor;
+    Color _color = color ?? Theme.of(context).colorScheme.primary;
 
     return Container(
       alignment: Alignment.center,

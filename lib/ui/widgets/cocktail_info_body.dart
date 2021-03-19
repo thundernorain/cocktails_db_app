@@ -55,7 +55,6 @@ class CocktailInfoBody extends StatelessWidget {
                   child: Text("Glass:"),
                 ),
                 TextLink(
-                  color: Theme.of(context).accentColor,
                   text: Text(cocktails.drinks[drinkIndex].strGlass!),
                 ),
               ],
