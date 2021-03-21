@@ -1,5 +1,6 @@
 import 'package:cocktails_db_app/ui/screens/favorites_screen.dart';
 import 'package:cocktails_db_app/ui/screens/main_view.dart';
+import 'package:cocktails_db_app/ui/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
 class AppScaffold extends StatefulWidget {
@@ -12,6 +13,10 @@ class _AppScaffoldState extends State<AppScaffold> {
   final List<Widget> _pages = [
     MainView(),
     FavoritesScreen(),
+  ];
+  final List<String> _titles = [
+    "Cocktails",
+    "Favorites",
   ];
   int _selectedPage = 0;
   void _selectPage(int index) {
@@ -36,6 +41,11 @@ class _AppScaffoldState extends State<AppScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_titles[_selectedPage]),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
+      drawer: MyDrawer(),
       body: PageView(
         controller: _pageController,
         children: _pages,

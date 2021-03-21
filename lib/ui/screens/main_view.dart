@@ -27,7 +27,7 @@ class _MainViewState extends State<MainView>
     return Container(
       child: Column(
         children: [
-          SizedBox(height: 30),
+          //SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.all(8),
             child: _searchBar(),

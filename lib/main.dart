@@ -18,6 +18,7 @@ void main() => runApp(
     );
 
 ThemeData _myTheme = ThemeData.light().copyWith(
+  //primaryColor: Colors.pink,
   colorScheme: ColorScheme.fromSwatch(
     primarySwatch: Colors.pink,
     accentColor: Colors.amberAccent,
