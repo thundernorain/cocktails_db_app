@@ -7,8 +7,8 @@ import 'cocktail_from_json.dart';
 class Network {
   final String _searchUrlHead =
       "https://thecocktaildb.com/api/json/v1/1/search.php?";
-  final String _lookupUrlHead =
-      "https://thecocktaildb.com/api/json/v1/1/lookup.php?";
+/*   final String _lookupUrlHead =
+      "https://thecocktaildb.com/api/json/v1/1/lookup.php?"; */
 
   Future<CocktailFromJson> getCocktails({String? name}) async {
     final String url;
