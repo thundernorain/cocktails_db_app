@@ -1,21 +1,18 @@
-import 'package:cocktails_db_app/constants.dart';
-import 'package:cocktails_db_app/model/cocktail_from_json.dart';
 import 'package:flutter/material.dart';
 
-class CocktailCard extends StatelessWidget {
-  final CocktailFromJson cocktails;
-  final int drinkIndex;
+import '../../constants.dart';
 
-  const CocktailCard(
-      {Key? key, required this.cocktails, required this.drinkIndex})
-      : super(key: key);
+class CategoryCard extends StatelessWidget {
+  final String name;
+
+  const CategoryCard({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: InkWell(
-        onTap: () => _openCocktailInfo(context),
+        onTap: () => _onTap(context, name),
         child: Container(
           decoration: BoxDecoration(
               color: Colors.white,
@@ -37,20 +34,14 @@ class CocktailCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   image: DecorationImage(
-                    image: NetworkImage(
-                        cocktails.drinks[drinkIndex].strDrinkThumb ??
-                            Constants.questionImage),
+                    image: NetworkImage(Constants.questionImage),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               Text(
-                cocktails.drinks[drinkIndex].strDrink!,
+                name,
                 textAlign: TextAlign.center,
-              ),
-              Text(
-                cocktails.drinks[drinkIndex].strAlcoholic ?? "",
-                style: TextStyle(color: Colors.grey),
               ),
             ],
           ),
@@ -58,10 +49,7 @@ class CocktailCard extends StatelessWidget {
       ),
     );
   }
-
-  _openCocktailInfo(BuildContext context) {
-    Navigator.of(context).pushNamed("/cocktail_info", arguments: {
-      "id": cocktails.drinks[drinkIndex].idDrink!,
-    });
-  }
 }
+
+_onTap(BuildContext context, String category) => Navigator.of(context)
+    .pushNamed("/filter_category", arguments: {"category": category});

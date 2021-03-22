@@ -18,7 +18,11 @@ class MyDrawer extends StatelessWidget {
               onTap: () => Navigator.of(context).pushReplacementNamed("/"),
             ),
             DrawerListTile(
-                leading: Icon(Icons.category), title: Text("Categories")),
+              leading: Icon(Icons.category),
+              title: Text("Categories"),
+              onTap: () => Navigator.of(context)
+                  .pushReplacementNamed("/categories_list"),
+            ),
             DrawerListTile(
                 leading: Icon(Icons.icecream), title: Text("Ingredients")),
             DrawerListTile(

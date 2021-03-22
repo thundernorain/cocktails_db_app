@@ -4,22 +4,21 @@ import 'package:flutter/material.dart';
 
 class CocktailGridBuilder extends StatelessWidget {
   final CocktailFromJson cocktails;
+  final Widget Function(BuildContext, int) itemBuilder;
 
-  const CocktailGridBuilder({Key? key, required this.cocktails})
+  const CocktailGridBuilder(
+      {Key? key, required this.cocktails, required this.itemBuilder})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-/*       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.85, */
       child: Expanded(
         child: MediaQuery.removePadding(
           context: context,
           removeTop: true,
           child: GridView.builder(
             physics: ScrollPhysics(),
-            //shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               childAspectRatio: 0.8,
               maxCrossAxisExtent: 200,
@@ -27,10 +26,7 @@ class CocktailGridBuilder extends StatelessWidget {
               mainAxisSpacing: 10,
             ),
             itemCount: cocktails.drinks.length,
-            itemBuilder: (context, i) => CocktailCard(
-              cocktails: cocktails,
-              drinkIndex: i,
-            ),
+            itemBuilder: itemBuilder,
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
 import 'package:cocktails_db_app/model/network.dart';
+import 'package:cocktails_db_app/ui/widgets/cocktail_card.dart';
 import 'package:cocktails_db_app/ui/widgets/cocktail_grid_builder.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class _MainViewState extends State<MainView>
   @override
   void initState() {
     super.initState();
-    cocktails = Network().getCocktails(name: _cocktailName);
+    cocktails = Network().searchByName(_cocktailName);
   }
 
   @override
@@ -27,7 +28,6 @@ class _MainViewState extends State<MainView>
     return Container(
       child: Column(
         children: [
-          //SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.all(8),
             child: _searchBar(),
@@ -37,10 +37,16 @@ class _MainViewState extends State<MainView>
               future: cocktails,
               builder: (context, AsyncSnapshot<CocktailFromJson> snapshot) =>
                   snapshot.hasData
-                      ? CocktailGridBuilder(cocktails: snapshot.data!)
+                      ? CocktailGridBuilder(
+                          cocktails: snapshot.data!,
+                          itemBuilder: (context, i) => CocktailCard(
+                            cocktails: snapshot.data!,
+                            drinkIndex: i,
+                          ),
+                        )
                       : _snapshotWithoutData(snapshot),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -56,7 +62,7 @@ class _MainViewState extends State<MainView>
         onSubmitted: (value) {
           setState(() {
             _cocktailName = value;
-            cocktails = Network().getCocktails(name: _cocktailName);
+            cocktails = Network().searchByName(_cocktailName);
           });
         },
       );
