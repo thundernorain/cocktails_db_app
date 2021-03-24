@@ -11,8 +11,8 @@ class Network {
       "https://www.thecocktaildb.com/api/json/v1/1/filter.php?";
   final String _lookupUrlHead =
       "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?";
-  final String _categoriesListUrl =
-      "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
+  final String _listUrl =
+      "https://www.thecocktaildb.com/api/json/v1/1/list.php?";
 
   Future<CocktailFromJson> searchByName(String? name) {
     final String url;
@@ -27,11 +27,17 @@ class Network {
   Future<CocktailFromJson> filterByCategory(String category) =>
       _getFuture(_filterUrlHead + "c=" + category);
 
+  Future<CocktailFromJson> filterByIngredient(String ingredient) =>
+      _getFuture(_filterUrlHead + "i=" + ingredient);
+
   Future<CocktailFromJson> lookupCocktailById(String id) =>
       _getFuture(_lookupUrlHead + "i=" + id);
 
   Future<CocktailFromJson> getCategoriesList() =>
-      _getFuture(_categoriesListUrl);
+      _getFuture(_listUrl + "c=list");
+
+  Future<CocktailFromJson> getIngredientsList() =>
+      _getFuture(_listUrl + "i=list");
 
   Future<CocktailFromJson> _getFuture(String url) async {
     final response = await get(Uri.parse(url));

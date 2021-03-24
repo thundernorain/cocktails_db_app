@@ -5,13 +5,6 @@ import 'package:cocktails_db_app/ui/widgets/cocktail_info_body.dart';
 import 'package:flutter/material.dart';
 
 class CocktailInfo extends StatefulWidget {
-/*   final CocktailFromJson cocktails;
-  final int drinkIndex;
-
-  const CocktailInfo(
-      {Key? key, required this.cocktails, required this.drinkIndex})
-      : super(key: key); */
-
   final String id;
 
   const CocktailInfo({Key? key, required this.id}) : super(key: key);

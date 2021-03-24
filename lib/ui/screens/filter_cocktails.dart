@@ -1,16 +1,15 @@
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
-import 'package:cocktails_db_app/model/network.dart';
+import 'package:cocktails_db_app/model/screen_args.dart';
 import 'package:cocktails_db_app/ui/widgets/cocktail_card.dart';
 import 'package:cocktails_db_app/ui/widgets/cocktail_grid_builder.dart';
 import 'package:cocktails_db_app/ui/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
-class CategoryCocktails extends StatelessWidget {
+class FilterCocktails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, Object>;
-    final String category = routeArgs["category"] as String;
+    final routeArgs = ModalRoute.of(context)!.settings.arguments as ScreenArgs;
+    final Function getFutureFunction = routeArgs.function;
 
     return Scaffold(
       drawer: MyDrawer(),
@@ -18,29 +17,29 @@ class CategoryCocktails extends StatelessWidget {
         title: Text("Categories"),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      body: CategoryCocktailsBody(
-        category: category,
+      body: FilterCocktailsBody(
+        getFutureFunction: getFutureFunction,
       ),
     );
   }
 }
 
-class CategoryCocktailsBody extends StatefulWidget {
-  final String category;
+class FilterCocktailsBody extends StatefulWidget {
+  final Function getFutureFunction;
 
-  const CategoryCocktailsBody({Key? key, required this.category})
+  const FilterCocktailsBody({Key? key, required this.getFutureFunction})
       : super(key: key);
   @override
-  _CategoryCocktailsBodyState createState() => _CategoryCocktailsBodyState();
+  _FilterCocktailsBodyState createState() => _FilterCocktailsBodyState();
 }
 
-class _CategoryCocktailsBodyState extends State<CategoryCocktailsBody> {
+class _FilterCocktailsBodyState extends State<FilterCocktailsBody> {
   late Future<CocktailFromJson> cocktails;
 
   @override
   void initState() {
     super.initState();
-    cocktails = Network().filterByCategory(widget.category);
+    cocktails = widget.getFutureFunction();
   }
 
   @override
