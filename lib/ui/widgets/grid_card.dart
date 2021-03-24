@@ -27,14 +27,17 @@ class GridCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (image != null)
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  image: DecorationImage(
-                    image: NetworkImage(image!),
-                    fit: BoxFit.cover,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    image: DecorationImage(
+                      image: NetworkImage(image!),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),

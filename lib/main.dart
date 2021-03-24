@@ -1,7 +1,9 @@
+import 'package:cocktails_db_app/ui/screens/about_screen.dart';
 import 'package:cocktails_db_app/ui/screens/app_scaffold.dart';
 import 'package:cocktails_db_app/ui/screens/categories_list.dart';
 import 'package:cocktails_db_app/ui/screens/filter_cocktails.dart';
 import 'package:cocktails_db_app/ui/screens/cocktail_info_scaffold.dart';
+import 'package:cocktails_db_app/ui/screens/glass_list.dart';
 import 'package:cocktails_db_app/ui/screens/ingredients_list.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,9 @@ void main() => runApp(
           "/cocktail_info": (ctx) => CocktailInfoScaffold(),
           "/categories_list": (ctx) => CategoriesList(),
           "/ingredient_list": (ctx) => IngredientsList(),
+          "/glass_list": (ctx) => GlassList(),
           "/filter_cocktails": (ctx) => FilterCocktails(),
+          "/about": (ctx) => AboutScreen(),
         },
       ),
     );

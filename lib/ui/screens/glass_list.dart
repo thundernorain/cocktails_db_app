@@ -1,45 +1,37 @@
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
+import 'package:cocktails_db_app/model/network.dart';
 import 'package:cocktails_db_app/model/screen_args.dart';
-import 'package:cocktails_db_app/ui/widgets/cocktail_card.dart';
+import 'package:cocktails_db_app/ui/widgets/grid_card.dart';
 import 'package:cocktails_db_app/ui/widgets/cocktail_grid_builder.dart';
 import 'package:cocktails_db_app/ui/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
-class FilterCocktails extends StatelessWidget {
+class GlassList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final routeArgs = ModalRoute.of(context)!.settings.arguments as ScreenArgs;
-    final Function getFutureFunction = routeArgs.function;
-
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
-        title: Text("Filtered cocktails"),
+        title: Text("Glasses"),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      body: FilterCocktailsBody(
-        getFutureFunction: getFutureFunction,
-      ),
+      body: GlassListBody(),
     );
   }
 }
 
-class FilterCocktailsBody extends StatefulWidget {
-  final Function getFutureFunction;
-
-  const FilterCocktailsBody({Key? key, required this.getFutureFunction})
-      : super(key: key);
+class GlassListBody extends StatefulWidget {
   @override
-  _FilterCocktailsBodyState createState() => _FilterCocktailsBodyState();
+  _GlassListBodyState createState() => _GlassListBodyState();
 }
 
-class _FilterCocktailsBodyState extends State<FilterCocktailsBody> {
-  late Future<CocktailFromJson> cocktails;
+class _GlassListBodyState extends State<GlassListBody> {
+  late Future<CocktailFromJson> categories;
 
   @override
   void initState() {
     super.initState();
-    cocktails = widget.getFutureFunction();
+    categories = Network().getGlassList();
   }
 
   @override
@@ -47,19 +39,32 @@ class _FilterCocktailsBodyState extends State<FilterCocktailsBody> {
     return Column(
       children: [
         FutureBuilder(
-          future: cocktails,
+          future: categories,
           builder: (context, AsyncSnapshot<CocktailFromJson> snapshot) =>
               snapshot.hasData
                   ? CocktailGridBuilder(
                       cocktails: snapshot.data!,
-                      itemBuilder: (context, i) => CocktailCard(
-                          cocktails: snapshot.data!, drinkIndex: i))
+                      itemBuilder: (context, i) => InkWell(
+                        child: GridCard(
+                          name: snapshot.data!.drinks[i].strGlass!,
+                        ),
+                        onTap: () =>
+                            _onTap(context, snapshot.data!.drinks[i].strGlass!),
+                      ),
+                    )
                   : _snapshotWithoutData(snapshot),
         ),
       ],
     );
   }
 }
+
+_onTap(BuildContext context, String glass) =>
+    Navigator.of(context).pushNamed("/filter_cocktails",
+        arguments: ScreenArgs(() => _getFuture(glass)));
+
+Future<CocktailFromJson> _getFuture(String glass) =>
+    Network().filterByGlass(glass);
 
 Widget _snapshotWithoutData(AsyncSnapshot<CocktailFromJson> snapshot) =>
     snapshot.hasError

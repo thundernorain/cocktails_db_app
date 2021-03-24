@@ -30,11 +30,19 @@ class Network {
   Future<CocktailFromJson> filterByIngredient(String ingredient) =>
       _getFuture(_filterUrlHead + "i=" + ingredient);
 
+  Future<CocktailFromJson> filterByGlass(String glass) =>
+      _getFuture(_filterUrlHead + "g=" + glass);
+
+  Future<CocktailFromJson> filterByNonAlcoholic() =>
+      _getFuture(_filterUrlHead + "a=Non_Alcoholic");
+
   Future<CocktailFromJson> lookupCocktailById(String id) =>
       _getFuture(_lookupUrlHead + "i=" + id);
 
   Future<CocktailFromJson> getCategoriesList() =>
       _getFuture(_listUrl + "c=list");
+
+  Future<CocktailFromJson> getGlassList() => _getFuture(_listUrl + "g=list");
 
   Future<CocktailFromJson> getIngredientsList() =>
       _getFuture(_listUrl + "i=list");
