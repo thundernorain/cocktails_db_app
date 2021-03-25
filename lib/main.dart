@@ -1,3 +1,4 @@
+import 'package:cocktails_db_app/create_material_color.dart';
 import 'package:cocktails_db_app/ui/screens/about_screen.dart';
 import 'package:cocktails_db_app/ui/screens/app_scaffold.dart';
 import 'package:cocktails_db_app/ui/screens/categories_list.dart';
@@ -28,9 +29,9 @@ void main() => runApp(
     );
 
 ThemeData _myTheme = ThemeData.light().copyWith(
-  //primaryColor: Colors.pink,
   colorScheme: ColorScheme.fromSwatch(
-    primarySwatch: Colors.pink,
+    primarySwatch: CreateMaterialColor()
+        .createMaterialColor(Color.fromRGBO(240, 98, 146, 1)),
     accentColor: Colors.amberAccent,
   ),
 );

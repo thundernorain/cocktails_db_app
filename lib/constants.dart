@@ -7,5 +7,5 @@ class Constants {
   static String getIngredientImage(String ingredient) =>
       "https://www.thecocktaildb.com/images/ingredients/" +
       ingredient +
-      "-Small.png";
+      "-Medium.png";
 }

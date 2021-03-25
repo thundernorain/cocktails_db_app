@@ -15,24 +15,17 @@ class CocktailInfoBody extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //  text alcoholic or not
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: TextLink(
-                  text: Text(cocktails.drinks[drinkIndex].strAlcoholic!),
-                ),
-              ),
-              //  text category
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: TextLink(
-                  text: Text(cocktails.drinks[drinkIndex].strCategory!),
-                ),
-              ),
-            ],
+          // Alco text
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(cocktails.drinks[drinkIndex].strAlcoholic!),
+          ),
+          //  text category
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TextLink(
+              text: Text(cocktails.drinks[drinkIndex].strCategory!),
+            ),
           ),
           //  Ingredients row
           Row(
