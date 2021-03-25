@@ -31,7 +31,7 @@ void main() => runApp(
 ThemeData _myTheme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSwatch(
     primarySwatch: CreateMaterialColor()
-        .createMaterialColor(Color.fromRGBO(240, 98, 146, 1)),
+        .createMaterialColor(Color.fromRGBO(186, 104, 200, 1)),
     accentColor: Colors.amberAccent,
   ),
 );

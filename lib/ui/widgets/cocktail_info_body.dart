@@ -1,4 +1,6 @@
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
+import 'package:cocktails_db_app/model/network.dart';
+import 'package:cocktails_db_app/model/screen_args.dart';
 import 'package:cocktails_db_app/ui/widgets/text_link.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +25,12 @@ class CocktailInfoBody extends StatelessWidget {
           //  text category
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: TextLink(
-              text: Text(cocktails.drinks[drinkIndex].strCategory!),
+            child: InkWell(
+              child: TextLink(
+                text: Text(cocktails.drinks[drinkIndex].strCategory!),
+              ),
+              onTap: () => _onCategoryTap(
+                  context, cocktails.drinks[drinkIndex].strCategory!),
             ),
           ),
           //  Ingredients row
@@ -35,7 +41,7 @@ class CocktailInfoBody extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text("Ingredients:"),
               ),
-              createIngredientGrid(cocktails, drinkIndex),
+              createIngredientGrid(context, cocktails, drinkIndex),
             ],
           ),
           //  Glass row
@@ -47,8 +53,12 @@ class CocktailInfoBody extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Text("Glass:"),
                 ),
-                TextLink(
-                  text: Text(cocktails.drinks[drinkIndex].strGlass!),
+                InkWell(
+                  child: TextLink(
+                    text: Text(cocktails.drinks[drinkIndex].strGlass!),
+                  ),
+                  onTap: () => _onGlassTap(
+                      context, cocktails.drinks[drinkIndex].strGlass!),
                 ),
               ],
             ),
@@ -70,7 +80,8 @@ class CocktailInfoBody extends StatelessWidget {
     );
   }
 
-  Widget createIngredientGrid(CocktailFromJson cocktails, int drinkIndex) {
+  Widget createIngredientGrid(
+      BuildContext context, CocktailFromJson cocktails, int drinkIndex) {
     List<String> ingredients = getIngredientList(cocktails, drinkIndex);
 
     return Expanded(
@@ -84,25 +95,16 @@ class CocktailInfoBody extends StatelessWidget {
         crossAxisCount: 3,
         children: List.generate(
           ingredients.length,
-          (index) => TextLink(text: Text(ingredients[index])),
+          (index) => InkWell(
+            child: TextLink(
+                text: Text(
+              ingredients[index],
+            )),
+            onTap: () => _onIngredientsTap(context, ingredients[index]),
+          ),
         ),
       ),
     );
-
-/*     return Flexible(
-      child: GridView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: ingredients.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //mainAxisSpacing: 4,
-            //crossAxisSpacing: 4,
-            crossAxisCount: 3,
-          ),
-          itemBuilder: (context, index) => TextLink(
-                text: Text(ingredients[index]),
-              )),
-    ); */
   }
 
   List<String> getIngredientList(CocktailFromJson cocktails, int drinkIndex) {
@@ -130,4 +132,25 @@ class CocktailInfoBody extends StatelessWidget {
     });
     return resultWithoutNull;
   }
+
+  _onIngredientsTap(BuildContext context, String ingredient) =>
+      Navigator.of(context).pushNamed("/filter_cocktails",
+          arguments: ScreenArgs(() => _getFutureIngredients(ingredient)));
+
+  Future<CocktailFromJson> _getFutureIngredients(String ingredient) =>
+      Network().filterByIngredient(ingredient);
+
+  _onGlassTap(BuildContext context, String glass) =>
+      Navigator.of(context).pushNamed("/filter_cocktails",
+          arguments: ScreenArgs(() => _getFutureGlass(glass)));
+
+  Future<CocktailFromJson> _getFutureGlass(String glass) =>
+      Network().filterByGlass(glass);
+
+  _onCategoryTap(BuildContext context, String category) =>
+      Navigator.of(context).pushNamed("/filter_cocktails",
+          arguments: ScreenArgs(() => _getFutureCategory(category)));
+
+  Future<CocktailFromJson> _getFutureCategory(String category) =>
+      Network().filterByCategory(category);
 }
