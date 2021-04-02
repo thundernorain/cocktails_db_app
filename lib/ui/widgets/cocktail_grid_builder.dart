@@ -20,7 +20,7 @@ class CocktailGridBuilder extends StatelessWidget {
           child: GridView.builder(
             physics: ScrollPhysics(),
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              childAspectRatio: 0.8,
+              childAspectRatio: 0.72,
               maxCrossAxisExtent: 200,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,

@@ -8,4 +8,14 @@ class FavoritesProvider with ChangeNotifier {
   List<String> get favorites {
     return [..._favoritesList];
   }
+
+  addToFavorites(String id) {
+    _favoritesList.add(id);
+  }
+
+  deleteFromFavorites(String id) {
+    _favoritesList.removeWhere(
+      (element) => element == id,
+    );
+  }
 }

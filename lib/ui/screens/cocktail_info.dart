@@ -2,6 +2,7 @@ import 'package:cocktails_db_app/model/cocktail_from_json.dart';
 import 'package:cocktails_db_app/model/network.dart';
 import 'package:cocktails_db_app/ui/widgets/cocktail_image.dart';
 import 'package:cocktails_db_app/ui/widgets/cocktail_info_body.dart';
+import 'package:cocktails_db_app/ui/widgets/favorites_button.dart';
 import 'package:flutter/material.dart';
 
 class CocktailInfo extends StatefulWidget {
@@ -47,8 +48,17 @@ class CocktailInfoHead extends StatelessWidget {
     return Container(
       child: ListView(
         children: [
-          CocktailImage(
-            imageUrl: cocktail.drinks[0].strDrinkThumb,
+          Stack(
+            children: [
+              CocktailImage(
+                imageUrl: cocktail.drinks[0].strDrinkThumb,
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child:
+                    FavoritesButton(idOfCocktail: cocktail.drinks[0].idDrink!),
+              ),
+            ],
           ),
           Container(
             alignment: Alignment.center,
