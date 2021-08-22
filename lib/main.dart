@@ -8,6 +8,7 @@ import 'package:cocktails_db_app/ui/screens/cocktail_info_scaffold.dart';
 import 'package:cocktails_db_app/ui/screens/glass_list.dart';
 import 'package:cocktails_db_app/ui/screens/ingredients_list.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
 /*
@@ -33,6 +34,8 @@ void main() => runApp(
 class MyMaterialApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    initHive();
+
     return MaterialApp(
       theme: _myTheme,
       routes: {
@@ -45,6 +48,11 @@ class MyMaterialApp extends StatelessWidget {
         ROUTE_ABOUT: (ctx) => AboutScreen(),
       },
     );
+  }
+
+  void initHive() async {
+    await Hive.initFlutter();
+    await Hive.openBox<List<String>>(FavoritesProvider.BOX_NAME);
   }
 }
 

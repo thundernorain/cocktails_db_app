@@ -25,7 +25,10 @@ class FavoritesGrid extends StatelessWidget {
             ),
             itemCount: favoritesList.length,
             itemBuilder: (context, index) =>
-                FavoritesCard(id: favoritesList[index]),
+                FavoritesCard(
+                  key: UniqueKey(),
+                  id: favoritesList[index]
+                  ),
           ),
         ),
       ),
