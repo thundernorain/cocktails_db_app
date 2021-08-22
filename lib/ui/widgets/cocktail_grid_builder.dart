@@ -1,5 +1,4 @@
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
-import 'package:cocktails_db_app/ui/widgets/cocktail_card.dart';
 import 'package:flutter/material.dart';
 
 class CocktailGridBuilder extends StatelessWidget {

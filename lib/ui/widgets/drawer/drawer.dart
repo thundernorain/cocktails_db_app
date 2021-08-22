@@ -1,4 +1,4 @@
-import 'package:cocktails_db_app/model/cocktail_from_json.dart';
+import 'package:cocktails_db_app/main.dart';
 import 'package:cocktails_db_app/model/network.dart';
 import 'package:cocktails_db_app/model/screen_args.dart';
 import 'package:cocktails_db_app/ui/widgets/drawer/drawer_list_tile.dart';
@@ -18,19 +18,19 @@ class MyDrawer extends StatelessWidget {
             DrawerListTile(
               leading: Icon(Icons.home),
               title: Text("Home"),
-              onTap: () => Navigator.of(context).pushReplacementNamed("/"),
+              onTap: () => Navigator.of(context).pushReplacementNamed(ROUTE_ROOT),
             ),
             DrawerListTile(
               leading: Icon(Icons.category),
               title: Text("Categories"),
               onTap: () => Navigator.of(context)
-                  .pushReplacementNamed("/categories_list"),
+                  .pushReplacementNamed(ROUTE_CATEGORIES_LIST),
             ),
             DrawerListTile(
               leading: Icon(Icons.icecream),
               title: Text("Ingredients"),
               onTap: () => Navigator.of(context)
-                  .pushReplacementNamed("/ingredient_list"),
+                  .pushReplacementNamed(ROUTE_INGREDIENT_LIST),
             ),
             DrawerListTile(
               leading: Icon(Icons.no_drinks),
@@ -41,12 +41,12 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.wine_bar),
               title: Text("Glass"),
               onTap: () =>
-                  Navigator.of(context).pushReplacementNamed("/glass_list"),
+                  Navigator.of(context).pushReplacementNamed(ROUTE_GLASS_LIST),
             ),
             DrawerListTile(
               leading: Icon(Icons.info),
               title: Text("About"),
-              onTap: () => Navigator.of(context).pushReplacementNamed("/about"),
+              onTap: () => Navigator.of(context).pushReplacementNamed(ROUTE_ABOUT),
             ),
           ],
         ),
@@ -57,6 +57,6 @@ class MyDrawer extends StatelessWidget {
 
 _onNonAlcoholicTileTap(BuildContext context) =>
     Navigator.of(context).pushReplacementNamed(
-      "/filter_cocktails",
+      ROUTE_FILTER_COCKTAILS,
       arguments: ScreenArgs(() => Network().filterByNonAlcoholic()),
     );

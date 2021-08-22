@@ -1,3 +1,4 @@
+import 'package:cocktails_db_app/main.dart';
 import 'package:cocktails_db_app/model/screen_args.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,6 @@ import 'package:cocktails_db_app/model/network.dart';
 import 'package:cocktails_db_app/ui/widgets/grid_card.dart';
 import 'package:cocktails_db_app/ui/widgets/cocktail_grid_builder.dart';
 import 'package:cocktails_db_app/ui/widgets/drawer/drawer.dart';
-import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 
@@ -67,7 +67,7 @@ class _IngredientsListBodyState extends State<IngredientsListBody> {
 }
 
 _onTap(BuildContext context, String ingredient) =>
-    Navigator.of(context).pushNamed("/filter_cocktails",
+    Navigator.of(context).pushNamed(ROUTE_FILTER_COCKTAILS,
         arguments: ScreenArgs(() => _getFuture(ingredient)));
 
 Future<CocktailFromJson> _getFuture(String ingredient) =>

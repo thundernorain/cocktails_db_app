@@ -1,4 +1,5 @@
 import 'package:cocktails_db_app/constants.dart';
+import 'package:cocktails_db_app/main.dart';
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
 import 'package:cocktails_db_app/ui/widgets/favorites_button.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class CocktailCard extends StatelessWidget {
   }
 
   _openCocktailInfo(BuildContext context) {
-    Navigator.of(context).pushNamed("/cocktail_info", arguments: {
+    Navigator.of(context).pushNamed(ROUTE_COCKTAIL_INFO, arguments: {
       "id": cocktails.drinks[drinkIndex].idDrink!,
     });
   }

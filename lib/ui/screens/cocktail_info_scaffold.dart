@@ -1,4 +1,3 @@
-import 'package:cocktails_db_app/model/cocktail_from_json.dart';
 import 'package:cocktails_db_app/ui/screens/cocktail_info.dart';
 import 'package:flutter/material.dart';
 

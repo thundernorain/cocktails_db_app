@@ -1,3 +1,4 @@
+import 'package:cocktails_db_app/main.dart';
 import 'package:cocktails_db_app/model/cocktail_from_json.dart';
 import 'package:cocktails_db_app/model/network.dart';
 import 'package:cocktails_db_app/model/screen_args.dart';
@@ -60,7 +61,7 @@ class _GlassListBodyState extends State<GlassListBody> {
 }
 
 _onTap(BuildContext context, String glass) =>
-    Navigator.of(context).pushNamed("/filter_cocktails",
+    Navigator.of(context).pushNamed(ROUTE_FILTER_COCKTAILS,
         arguments: ScreenArgs(() => _getFuture(glass)));
 
 Future<CocktailFromJson> _getFuture(String glass) =>

@@ -15,6 +15,14 @@ import 'package:provider/provider.dart';
   - Strawberry margarita bag with Strawberry card
 */
 
+const ROUTE_ROOT = "/";
+const ROUTE_COCKTAIL_INFO = "/cocktail_info";
+const ROUTE_CATEGORIES_LIST = "/categories_list";
+const ROUTE_INGREDIENT_LIST = "/ingredient_list";
+const ROUTE_GLASS_LIST = "/glass_list";
+const ROUTE_FILTER_COCKTAILS = "/filter_cocktails";
+const ROUTE_ABOUT = "/about";
+
 void main() => runApp(
       ChangeNotifierProvider(
         create: (ctx) => FavoritesProvider(),
@@ -28,13 +36,13 @@ class MyMaterialApp extends StatelessWidget {
     return MaterialApp(
       theme: _myTheme,
       routes: {
-        "/": (ctx) => AppScaffold(),
-        "/cocktail_info": (ctx) => CocktailInfoScaffold(),
-        "/categories_list": (ctx) => CategoriesList(),
-        "/ingredient_list": (ctx) => IngredientsList(),
-        "/glass_list": (ctx) => GlassList(),
-        "/filter_cocktails": (ctx) => FilterCocktails(),
-        "/about": (ctx) => AboutScreen(),
+        ROUTE_ROOT: (ctx) => AppScaffold(),
+        ROUTE_COCKTAIL_INFO: (ctx) => CocktailInfoScaffold(),
+        ROUTE_CATEGORIES_LIST: (ctx) => CategoriesList(),
+        ROUTE_INGREDIENT_LIST: (ctx) => IngredientsList(),
+        ROUTE_GLASS_LIST: (ctx) => GlassList(),
+        ROUTE_FILTER_COCKTAILS: (ctx) => FilterCocktails(),
+        ROUTE_ABOUT: (ctx) => AboutScreen(),
       },
     );
   }
